@@ -10,16 +10,14 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      7772,        195]
-NotebookOptionsPosition[      7192,        176]
-NotebookOutlinePosition[      7688,        194]
-CellTagsIndexPosition[      7645,        191]
+NotebookDataLength[      7378,        191]
+NotebookOptionsPosition[      6587,        169]
+NotebookOutlinePosition[      7111,        188]
+CellTagsIndexPosition[      7068,        185]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
-
-Cell[CellGroupData[{
 Cell[BoxData[{
  RowBox[{
   RowBox[{
@@ -39,8 +37,11 @@ Cell[BoxData[{
        RowBox[{
        "vertices", ",", " ", "i", ",", " ", "pentagon", ",", " ", "point", 
         ",", " ", "initPoint", ",", " ", "pointList", ",", " ", 
-        RowBox[{"travelConst", " ", "=", " ", "0.262"}]}], "}"}], ",", 
-      "\[IndentingNewLine]", 
+        RowBox[{"travelConst", " ", "=", " ", 
+         FractionBox["1", 
+          FractionBox[
+           RowBox[{"1", "+", 
+            SqrtBox["5"]}], "2"]]}]}], "}"}], ",", "\[IndentingNewLine]", 
       RowBox[{"(*", " ", 
        RowBox[{"Error", " ", "check", " ", "inputs"}], " ", "*)"}], 
       "\[IndentingNewLine]", 
@@ -109,75 +110,68 @@ Cell[BoxData[{
          RowBox[{
          "Blue", ",", " ", "pentagon", ",", "\[IndentingNewLine]", "Black", 
           ",", " ", 
+          RowBox[{"PointSize", "[", "0.0001", "]"}], ",", " ", 
           RowBox[{"Point", "[", "pointList", "]"}]}], "\[IndentingNewLine]", 
          "}"}], "]"}]}]}], "\[IndentingNewLine]", "]"}]}], ";"}], 
-  "\[IndentingNewLine]", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"Manipulate", "[", 
-  RowBox[{
-   RowBox[{"cerbFractal", "[", "j", "]"}], ",", " ", 
-   RowBox[{"{", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"24", "GB", " ", "Free", " ", "RAM"}], " ", "-", " ", 
     RowBox[{
+    "Any", " ", "increase", " ", "to", " ", "any", " ", "variable", " ", 
+     "will", " ", "result", " ", "in", " ", "lack", " ", "of", " ", 
+     "memory"}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sizeVar", " ", "=", " ", "12000"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"SystemOpen", "[", 
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<CerbFractal.png\>\"", ",", " ", 
+    RowBox[{"cerbFractal", "[", "10000000", "]"}], ",", " ", 
+    RowBox[{"CompressionLevel", "->", "1"}], ",", " ", 
+    RowBox[{"ImageSize", "->", 
      RowBox[{"{", 
-      RowBox[{"j", ",", " ", "10"}], "}"}], ",", " ", "2", ",", " ", "200000",
-      ",", " ", "1"}], "}"}]}], "]"}]}], "Input",
+      RowBox[{"sizeVar", ",", " ", 
+       RowBox[{"Floor", "[", 
+        RowBox[{"sizeVar", "*", "0.95"}], "]"}]}], "}"}]}]}], "]"}], 
+  "]"}]}], "Input",
  CellChangeTimes->CompressedData["
-1:eJxTTMoPSmViYGAQA2IQbRBS+e2f/lvHBuP6nyD6C6cRw38g/aP8rgCIlmC8
-oQmiG/62moFoldmVXiD6zy/7OBDdMbMhGUQnMC0sBNEsyjHlIPpBZxqYnvHE
-vxqsrkSsHSz/XWo2iE6RUQXTLrOlF4DV+y1bAqJvsE/YBLbHUHoziN6gdf0a
-iBa4EnsTRFt8O3AfbN+jjMdgd7qrvQTROW1rfoLdyVr6H0RP+NwIpmdMCuVn
-MHjrqLBHUBREL7Gbog6iPzy3sQbRW07ZeILoKVLBQSD6zfr4ZBDdYMCZBaI5
-bnYXgug5XkHFIDpDOuQ4WL+k4Emw/OYnXIxAWuOhtBCIjuF+LwqibyQzSIBo
-AJ+7q3Y=
-  "],
- CellLabel->
-  "(Local) In[1]:=",ExpressionUUID->"4055f9db-058e-1a41-8392-170302ac5d85"],
+1:eJwdzltMUgEYB/Ajo8RsS02KgBoOqWRWdJm1xRKLZuEyouPmg5ULNCpaUThz
+6KSpZasHYzyQlLOGPSmZ+Kjb2dJplzVXBrhkabFcTbrMS9EsPP/v4dvv4bv9
+c85eNlUJGIZR8wU1bN3i/x3xItfuxgScT9vFJHn/1EYzoCQlkgdd/1oKYK6v
+zgCX/haehq33XWZYKXhkh0JlRS2cul1NemPHnTTnWHeL+r+lPmiRq0i9T9ZJ
+86VP/DCS2tZHf3bKgrBXHQ7BjPFTE3DfIveR/n2yfqacxZu/QtvN7gTlXFGT
+hG1zN0ivu2wNo4kXKQYyxdB/wLMF/pzR7of9L7VHoUd60gRnn54xQ5cm7QIU
+TdyxwwcG0zVolbEjtL8h8wX1g7FVKbxbp2VZsCL9hxhGzIwEWt6/0wt556Pq
+YsimHzoGJ2e4E7A1222H+c5NDrgU2PYc6ro8pFHcNwqv5wXf0n74cYj2Xg2G
+IdPb8wVK7gW+Qas8ugBF7u0J+lsS3LuSdyBaqYWxc5wO6g+vPghFQ6ojsF9w
+1Uj9MScLxwaV56HtWdkl6CifugKNLckmuGeuoBn6X6/1QoWK7aA7Dwu7oa78
+bgBaLio5mF3dMEx3Jzd+gJxUQdraZ+OwPiT8DnN/9chTkffNegVcBljCNFE=
 
-Cell[BoxData[
- TagBox[
-  StyleBox[
-   DynamicModuleBox[{$CellContext`j$$ = 10, Typeset`show$$ = True, 
-    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
-    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
-    "\"untitled\"", Typeset`specs$$ = {{{
-       Hold[$CellContext`j$$], 10}, 2, 200000, 1, ControlType -> 
-      Manipulator}}, Typeset`size$$ = {360., {169., 173.50913203160502`}}, 
-    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
-    DynamicBox[Manipulate`ManipulateBoxes[
-     1, StandardForm, "Variables" :> {$CellContext`j$$ = 10}, 
-      "ControllerVariables" :> {}, 
-      "OtherVariables" :> {
-       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
-        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
-        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
-         Typeset`skipInitDone$$}, 
-      "Body" :> $CellContext`cerbFractal[$CellContext`j$$], 
-      "Specifications" :> {{{$CellContext`j$$, 10}, 2, 200000, 1}}, 
-      "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{408., {212.63403309800196`, 218.36596690199804`}},
-     SingleEvaluation->True],
-    Deinitialization:>None,
-    DynamicModuleValues:>{},
-    SynchronousInitialization->True,
-    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
-    UnsavedVariables:>{Typeset`initDone$$},
-    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
-   Deployed->True,
-   StripOnInput->False],
-  Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{{3.9174800628008537`*^9, 3.9174801394933434`*^9}, {
-   3.917480259496374*^9, 3.9174803078548985`*^9}, {3.9174803778980446`*^9, 
-   3.9174803957293644`*^9}, 3.9174804366197224`*^9, 3.917480764810213*^9, 
-   3.917480812794485*^9, 3.9174810677963047`*^9, {3.917481535516199*^9, 
-   3.9174815476393337`*^9}, {3.9174820892465973`*^9, 
-   3.9174821371134663`*^9}, {3.9174821773221397`*^9, 3.917482201222969*^9}},
+  "],ExpressionUUID->"4055f9db-058e-1a41-8392-170302ac5d85"],
+
+Cell[BoxData["."], "Input",
+ CellChangeTimes->{
+  3.9174934192067184`*^9},ExpressionUUID->"c49d31f3-237f-624b-9baf-\
+120253ca8341"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\"\<CerbFractal.png\>\""], "Input",
+ CellChangeTimes->{3.9174930934783325`*^9},
  CellLabel->
-  "(Local) Out[3]=",ExpressionUUID->"fb5c9515-59a2-cf48-8774-69a76ee62c95"]
+  "(Local) In[47]:=",ExpressionUUID->"86ea3ac3-4b6a-524a-876a-3e8153d155e5"],
+
+Cell[BoxData["\<\"CerbFractal.png\"\>"], "Output",
+ CellChangeTimes->{3.917493093486845*^9},
+ CellLabel->
+  "(Local) Out[47]=",ExpressionUUID->"0fcdfc81-b6c1-fe4c-a76d-e2f3e307ce15"]
 }, Open  ]]
 },
-WindowSize->{1920, 1047.75},
-WindowMargins->{{-6, Automatic}, {Automatic, -6}},
+WindowSize->{1908, 1005.75},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
 DockedCells->{},
 TaggingRules-><|"ChatNotebookSettings" -> <|"Assistance" -> False|>|>,
+Magnification:>0.8 Inherited,
 FrontEndVersion->"14.0 for Microsoft Windows (64-bit) (December 12, 2023)",
 StyleDefinitions->"Chatbook.nb",
 ExpressionUUID->"ea08a355-fe62-ee49-aba3-73448644a2be"
@@ -193,9 +187,11 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
+Cell[558, 20, 5486, 129, 490, "Input",ExpressionUUID->"4055f9db-058e-1a41-8392-170302ac5d85"],
+Cell[6047, 151, 131, 3, 22, "Input",ExpressionUUID->"c49d31f3-237f-624b-9baf-120253ca8341"],
 Cell[CellGroupData[{
-Cell[580, 22, 4524, 110, 577, "Input",ExpressionUUID->"4055f9db-058e-1a41-8392-170302ac5d85"],
-Cell[5107, 134, 2069, 39, 487, "Output",ExpressionUUID->"fb5c9515-59a2-cf48-8774-69a76ee62c95"]
+Cell[6203, 158, 183, 3, 33, "Input",ExpressionUUID->"86ea3ac3-4b6a-524a-876a-3e8153d155e5"],
+Cell[6389, 163, 182, 3, 36, "Output",ExpressionUUID->"0fcdfc81-b6c1-fe4c-a76d-e2f3e307ce15"]
 }, Open  ]]
 }
 ]

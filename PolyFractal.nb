@@ -1,0 +1,278 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10888,        270]
+NotebookOptionsPosition[     10248,        249]
+NotebookOutlinePosition[     10839,        271]
+CellTagsIndexPosition[     10796,        268]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "Function", " ", "returns", " ", "a", " ", "nice", " ", "fractal", " ", 
+     "for", " ", "a", " ", "given", " ", "odd"}], "-", 
+    RowBox[{"numbered", " ", "polygon", " ", 
+     RowBox[{"(", 
+      RowBox[{
+      "assuming", " ", "the", " ", "constant", " ", "has", " ", "been", " ", 
+       "worked", " ", "out", " ", "for", " ", "said", " ", "polygon"}], 
+      ")"}]}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"polyFractal", "[", 
+     RowBox[{"p_Integer", ",", " ", "n_Integer", ",", " ", 
+      RowBox[{"polyCol_RGBColor", ":", " ", "Blue"}], ",", " ", 
+      RowBox[{"ptCol_RGBColor", ":", " ", "Black"}], ",", " ", 
+      RowBox[{"ptSize_Real", ":", " ", "0.0001"}]}], "]"}], " ", ":=", " ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "pTable", ",", " ", "vertices", ",", " ", "i", ",", " ", "polygon", 
+        ",", " ", "point", ",", " ", "pointList", ",", " ", "travelConst"}], 
+       "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "Error", " ", "check", " ", "inputs", " ", Cell[
+        "n",ExpressionUUID->"be0f2248-9eaa-4351-aad6-008154d3f48d"], " ", 
+        "and", " ", Cell[
+        "ptSize",ExpressionUUID->"4fc14260-2d24-4ab7-b29a-af2c4f13e449"]}], 
+       " ", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"n", "<=", "1"}], ",", " ", 
+         RowBox[{
+         "Return", "[", 
+          "\"\<ERROR! Please call this function with \
+\!\(\*Cell[\"n>1\",ExpressionUUID->\"fde32abd-c059-9d46-84cb-33bf026873dc\"]\)\
+...\>\"", "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"ptSize", "<=", "0"}], ",", " ", 
+         RowBox[{
+         "Return", "[", 
+          "\"\<ERROR! Please call this function with \
+\!\(\*Cell[\"ptSize>0\",ExpressionUUID->\"43a6373d-a67d-4ddb-abc8-\
+a9f84c01e6fc\"]\)...\>\"", "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Generate", " ", "Hash", " ", "Table", " ", "of", " ", "currently", 
+         " ", "computed", " ", "fractal", " ", "constants"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"pTable", " ", "=", " ", 
+        RowBox[{
+        "CreateDataStructure", "[", "\"\<OrderedHashTable\>\"", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"pTable", "[", 
+        RowBox[{"\"\<Insert\>\"", ",", " ", 
+         RowBox[{"3", "->", 
+          FractionBox["2", 
+           RowBox[{"1", "+", 
+            SqrtBox["9"]}]]}]}], "]"}], ";", " ", 
+       RowBox[{"pTable", "[", 
+        RowBox[{"\"\<Insert\>\"", ",", " ", 
+         RowBox[{"5", "->", 
+          FractionBox["2", 
+           RowBox[{"1", "+", 
+            SqrtBox["5"]}]]}]}], "]"}], ";", " ", 
+       RowBox[{"pTable", "[", 
+        RowBox[{"\"\<Insert\>\"", ",", " ", 
+         RowBox[{"7", "->", 
+          FractionBox["2", 
+           RowBox[{"1", "+", 
+            SqrtBox["3.57"]}]]}]}], "]"}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Error", " ", "check", " ", "input", " ", Cell[
+         "p",ExpressionUUID->"b6794f1d-01ec-42fb-8074-d5f8ff8236ae"]}], " ", 
+        "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"Not", "[", 
+          RowBox[{"pTable", "[", 
+           RowBox[{"\"\<KeyExistsQ\>\"", ",", " ", "p"}], "]"}], "]"}], ",", 
+         " ", 
+         RowBox[{
+         "Return", "[", 
+          "\"\<ERROR! Please call this function with \
+\!\(\*Cell[\"p\[Element]{3,5,7}\",ExpressionUUID->\"8a5a13b5-6267-4f33-aaed-\
+8dddf343a22a\"]\)...\>\"", "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Prepare", " ", "travel", " ", "constant"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"travelConst", " ", "=", " ", 
+        RowBox[{"pTable", "[", 
+         RowBox[{"\"\<Lookup\>\"", ",", " ", "p"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Generate", " ", "vertices"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"vertices", " ", "=", " ", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Sin", "[", 
+             RowBox[{
+              FractionBox[
+               RowBox[{"2", "*", "\[Pi]"}], "p"], "*", "i"}], "]"}], ",", " ", 
+            RowBox[{"Cos", "[", 
+             RowBox[{
+              FractionBox[
+               RowBox[{"2", "*", "\[Pi]"}], "p"], "*", "i"}], "]"}]}], "}"}], 
+          ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", " ", "0", ",", " ", 
+            RowBox[{"p", "-", "1"}]}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Generate", " ", "Polygon"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"polygon", " ", "=", " ", 
+        RowBox[{"Polygon", "[", "vertices", "]"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Generate", " ", "initial", " ", "point"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"point", " ", "=", " ", 
+        RowBox[{"RandomPoint", "[", "polygon", "]"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Generate", " ", "table", " ", "of", " ", "points", " ", "by", " ", 
+         "fractal", " ", "algorithm"}], " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"pointList", "=", 
+        RowBox[{"NestList", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"#", "+", 
+            RowBox[{"travelConst", "*", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"RandomChoice", "[", "vertices", "]"}], "-", "#"}], 
+              ")"}]}]}], "&"}], ",", "point", ",", 
+          RowBox[{"n", "-", "1"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Return", " ", "final", " ", "Graphics"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"Graphics", "[", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+         "polyCol", ",", " ", "polygon", ",", "\[IndentingNewLine]", "ptCol", 
+          ",", " ", 
+          RowBox[{"PointSize", "[", "ptSize", "]"}], ",", " ", 
+          RowBox[{"Point", "[", "pointList", "]"}]}], "\[IndentingNewLine]", 
+         "}"}], "]"}]}]}], "\[IndentingNewLine]", "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"polyFractal", "[", 
+  RowBox[{"7", ",", " ", "2000000", ",", " ", "Red"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"polyFractal", "[", 
+  RowBox[{"5", ",", " ", "2000000"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"polyFractal", "[", 
+  RowBox[{"3", ",", " ", "2000000", ",", " ", "Yellow", ",", " ", "Brown"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJwlznkw1GEYB/AlhRhX7qWxI6VDodA411HrKDYts+TKsSimlIpxtE0plSlt
+KtbWhO2YcWalDGZ2VBMyjZTFhCQlTauctaZsv+/bH+98/nje7/N9GPFHQpNU
+aTRaEPWgPSd7cXmb3Ju//bQCzms60pSUv0+N6EFTlcGNkP+3wBmuK88OhH+W
+vGJgYRk/AcapVmRANeuoU3DsIo9YOhGSQ/5lGl8g81/m5TDRwoboV06/S/4H
+3xfDQfXiRtLjQJfAhk0DMqj3LnoI7lyUfiB94ymfyJ2s9VMw7XyNgty58oQS
+Fs+dIZYKwnRp9nJvqzZ9Iyj2LNkAf066u8GmbvcAWGK+PxR+r49NgHx7zUNQ
+Y+hyBhQFhh6HKXTOS5I30+8ic8nEahVK2490Axil9cMIDibQTGFi/1s/Ncr5
+kU0syNHy3QuHJ6X7YKGhIANuyVmbCf/U2T2DzHslRLZRYyfM2ijpI/mBShnJ
+vWofgLSG2i/Q9FrdN5hiMbIANQRbFaQ3SOKyirJtJM4dTiRLmdBvl7YP1Hhu
+4w+bVI+xybw3hwN7261TYdqjsHSYyR07CtkFyrNwx5zzOSjuWVMKrWw4d8ie
+2141kMktqoOJh62l0JCX94LsHbZ8D6XmVsQ04Xc5zJWpTcN1M7UW6rj3tYkV
+FJUlsdwoW1w2sOEdp2wOZPt3cOGeaN8Y2FAmI/oHayfB28e7LsEilkkxdFo/
+SuwNmCmBIqd8EbTor6yAt/idD6CgYmcNDFQIn0JnbmsbyTVGtMPIFSEdcFnV
+eAqOr5mVQ7ulsWlI17/J8qDsPlhLZG21DIH35xc4cNTh4QpP9Po0asMrlmsF
+UHjY4DrML+ILoc+Bqw8gv8KmDy6pM2Twq7RqEo5/3a2APZJqSy/Km1We1vCk
+9mAw1Km6GgEZU7WxMMu3ngfNztxIg7blOldggaZSCL+FdFdBfynvIQyq47VC
+oWRVLwwPvTEAXTX2j8LI5khiSl/6OIznKj9D+eYfs7CaqTtH9j1huDApAzwe
+E133cpJ9KJtTw4lcPXEGlLf817FSnAtpmc/yoOiNXAxNWn8T/wFgkSK1
+  "],
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"4055f9db-058e-1a41-8392-170302ac5d85"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"24", "GB", " ", "Free", " ", "RAM"}], " ", "-", " ", 
+    RowBox[{
+    "Any", " ", "increase", " ", "to", " ", "any", " ", "variable", " ", 
+     "will", " ", "result", " ", "in", " ", "lack", " ", "of", " ", 
+     "memory"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"sizeVar", " ", "=", " ", "12000"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"SystemOpen", "[", 
+     RowBox[{"Export", "[", 
+      RowBox[{"\"\<PolyFractal.png\>\"", ",", " ", 
+       RowBox[{"polyFractal", "[", 
+        RowBox[{"5", ",", " ", "10000000", ",", " ", "Red"}], "]"}], ",", " ", 
+       RowBox[{"CompressionLevel", "->", "1"}], ",", " ", 
+       RowBox[{"ImageSize", "->", 
+        RowBox[{"{", 
+         RowBox[{"sizeVar", ",", " ", 
+          RowBox[{"Floor", "[", 
+           RowBox[{"sizeVar", "*", "0.95"}], "]"}]}], "}"}]}]}], "]"}], "]"}],
+     "*)"}]}]}]], "Input",
+ CellChangeTimes->{{3.917609802387467*^9, 3.917609815523607*^9}},
+ Background->RGBColor[
+  0.94, 0.91, 0.88],ExpressionUUID->"6495c62f-8408-4804-8619-47423647845e"]
+},
+WindowSize->{Full, Full},
+WindowMargins->{{79, Automatic}, {Automatic, 0}},
+DockedCells->{},
+TaggingRules-><|
+ "ChatNotebookSettings" -> <|
+   "Assistance" -> False, 
+    "Model" -> <|"Service" -> "Anthropic", "Name" -> "claude-2"|>|>|>,
+Magnification:>0.8 Inherited,
+FrontEndVersion->"14.0 for Mac OS X ARM (64-bit) (December 12, 2023)",
+StyleDefinitions->"Chatbook.nb",
+ExpressionUUID->"ea08a355-fe62-ee49-aba3-73448644a2be"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 8538, 198, 769, "Input",ExpressionUUID->"4055f9db-058e-1a41-8392-170302ac5d85"],
+Cell[9099, 220, 1145, 27, 71, "Input",ExpressionUUID->"6495c62f-8408-4804-8619-47423647845e"]
+}
+]
+*)
+
